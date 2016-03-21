@@ -1,14 +1,15 @@
 package com.example.jayzhang.doodler;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.SeekBar;
-
+import android.widget.ImageView;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +22,7 @@ public class DoodleView extends View {
     ArrayList<Integer> strokeOpacity;
     ArrayList<Integer> colors;
     ArrayList<Path> paths;
+    Bitmap bitmap;
     // Path path = new Path();
     float strokeWidth = 1;
     int currentOpacity = 0;
@@ -46,9 +48,9 @@ public class DoodleView extends View {
         strokeWidths = new ArrayList<Float>();
         strokeOpacity = new ArrayList<Integer>();
         colors = new ArrayList<Integer>();
+        bitmap = null;
 
         paintDoodle = new Paint();
-        // paintDoodle.setColor(getResources().getColor(R.color.red, null));
         paintDoodle.setColor(currentColor);
         paintDoodle.setAntiAlias(true);
         paintDoodle.setStyle(Paint.Style.STROKE);
@@ -64,6 +66,9 @@ public class DoodleView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (bitmap != null)
+            canvas.drawBitmap(bitmap, 0, 0, new Paint(Paint.DITHER_FLAG));
 
         for (int i = 0; i < paths.size(); i++) {
             paintDoodle.setColor(colors.get(i));
@@ -91,6 +96,12 @@ public class DoodleView extends View {
             strokeOpacity.add(new Integer(currentOpacity));
             colors.add(new Integer(currentColor));
         }
+
+        /*
+        Log.d("strokeWidth: ", String.valueOf(paintDoodle.getStrokeWidth()));
+        Log.d("strokeOpacity: ", String.valueOf(paintDoodle.getAlpha()));
+        Log.d("currentColor: ", String.valueOf(paintDoodle.getColor()));
+        */
 
         Path path = paths.get(paths.size() - 1);
         if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
