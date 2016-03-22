@@ -15,3 +15,7 @@ For each new drawing, you need to click the "PROPERTIES" button and customize pa
 <li>Then, feel free to doodle over the image imported</li>
 </ul>
 <i>For a detailed walk-through, please refer to this <a href="https://www.youtube.com/watch?v=HAS8jIP__WM">video</a></i>
+<br />
+<br />
+<Strong>References:</Strong>
+<p>I used a function found on StackOverFlow which convert view to bitmap</p>
