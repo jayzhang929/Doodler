@@ -139,22 +139,12 @@ public class MainActivity extends AppCompatActivity {
         doodleView.paintDoodle.setStrokeWidth(curStrokeWidth);
         doodleView.paintDoodle.setAlpha(curOpacity);
 
-        /*
-        Log.d("MainAcitity: ", "clearDoodle method");
-        Log.d("strokeWidth: ", String.valueOf(doodleView.paintDoodle.getStrokeWidth()));
-        Log.d("strokeOpacity: ", String.valueOf(doodleView.paintDoodle.getAlpha()));
-        Log.d("currentColor: ", String.valueOf(doodleView.paintDoodle.getColor()));
-        */
-
-        // ********** Bug:paintDoodle properties doesn't get succeed from previous props before clearing **********
         layout.addView(doodleView);
 
     }
 
     public void saveImage(MenuItem item) {
-        // if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        //        != PackageManager.PERMISSION_GRANTED)
-            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+        requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
     }
 
     @Override
